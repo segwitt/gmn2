@@ -1,0 +1,8 @@
+.idea/
+*.pyc
+class-agnostic-counting/models/*
+class-agnostic-counting/logs/*
+*.h5
+*.zip
+*.png
+*.jpg

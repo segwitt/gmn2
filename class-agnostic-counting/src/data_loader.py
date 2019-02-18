@@ -56,6 +56,11 @@ class get_config(object):
             self.patchdims = (128, 128, 3)
             self.outputdims = (64, 64, 1)
             self.pad = 0
+        elif self.dataset == 'cyl':
+            self.imgdims = (800, 800, 3)
+            self.patchdims = (64, 64, 3)
+            self.outputdims = (200, 200, 1)
+            self.pad = 0
 
         else:
             raise IOError('==> unknown data set.')

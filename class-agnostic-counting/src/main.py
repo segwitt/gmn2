@@ -14,7 +14,7 @@ parser.add_argument('--optimizer', default='adam', choices=['adam'], type=str)
 parser.add_argument('--mode', default='pretrain', choices=['pretrain', 'adapt'], type=str,
                     help='pretrain on tracking data or adapt to specific dataset.')
 parser.add_argument('--dataset', default='imagenet',
-                    choices=['imagenet', 'vgg_cell', 'hela_cell', 'car'],
+                    choices=['imagenet', 'vgg_cell', 'hela_cell', 'car', 'cyl'],
                     type=str, help='pretrain on tracking data or adapt to specific dataset.')
 parser.add_argument('--lr', default=0.0005, type=float)
 parser.add_argument('--warmup_ratio', default=0, type=float)
@@ -154,17 +154,17 @@ def adapt_gmn():
                                                  mode='min'),
                  normal_lr, tbcallbacks]
 
-    iter = iterator(trn_gen)
-    x = model.predict(iter.next()[0])
-    print('xxxx',x.shape)
+    # iter = iterator(trn_gen)
+    # x = model.predict(iter.next()[0])
+    # print('xxxx',x.shape)
     # print()
-    # model.fit_generator(trn_gen,
-    #                     steps_per_epoch=600,
-    #                     epochs=args.epochs,
-    #                     validation_data=val_gen,
-    #                     validation_steps=100,
-    #                     callbacks=callbacks,
-    #                     verbose=1)
+    model.fit_generator(trn_gen,
+                        steps_per_epoch=600,
+                        epochs=args.epochs,
+                        validation_data=val_gen,
+                        validation_steps=100,
+                        callbacks=callbacks,
+                        verbose=1)
 
 
 if __name__ == '__main__':
